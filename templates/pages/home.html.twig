@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+
+{% block hero %}
+{% include "components/hero.html.twig" %}
+{% endblock %}
+
+{% block body %}
+
+<main>
+    <!-- PRESENTATION -->
+    <!-- ================================ -->
+    <section class="container">
+        <h2 class="section-title">Mon expertise</h2>
+        <p class="presentation-txt">
+            En vingt ans de design graphique, j’ai travaillé aussi bien pour des PME que pour des marques renommées,
+            toujours avec la même rigueur et le même engouement. C’est cette expérience et cette souplesse que je
+            vous propose.
+        </p>
+        <hr class="separator" />
+        <h2 class="section-title">Ma philosophie</h2>
+        <p class="presentation-txt">
+            Je m’engage à vous présenter une solution graphique et technique de qualité, professionnelle et adaptée
+            à votre budget, en restant attentif à vos besoins pour les traduire dans le projet le plus approprié.
+        </p>
+    </section>
+
+    <!-- SKILLS -->
+    <!-- ================================ -->
+    <section class="skills-section">
+        <div class="skills-wrapper container">
+           {% include 'components/skillCard.html.twig' with
+                {
+                image: asset('assets/images/picto-experience.png'),
+                alt:'Expérence',
+                title: '<span>La bonne dose</span>
+                        <br/> d\'expérience...'
+                }
+            %}
+
+           {% include 'components/skillCard.html.twig' with
+                {
+                image: asset('assets/images/picto-analyse.png'),
+                alt:'Analyser',
+                title: '<span>Pour </span>analyser<br/>
+                        <span>votre besoin...</span>'
+                }
+            %}
+
+           {% include 'components/skillCard.html.twig' with
+                {
+                image: asset('assets/images/picto-solution.png'),
+                alt:'Solution',
+                title: '<span>Et définir la</span><br />
+                        solution <span>adaptée</span>'
+                }
+            %}
+    </section>
+
+    <!-- LAST WORKS -->
+    <!-- ================================ -->
+    <section class="last-works-section container">
+        <h2 class="section-title">Quelques réalisations...</h2>
+        <div class="works-card-wrapper">
+            
+        </div>
+
+
+
+
+    </section>
+
+</main>
+{% endblock %}

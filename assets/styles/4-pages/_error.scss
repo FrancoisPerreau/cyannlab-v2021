@@ -1,0 +1,32 @@
+.error-section {
+    z-index: -1;
+    height: calc(100vh - 75px);
+    background: rgb(0, 146, 227);
+    background: linear-gradient(90deg, rgba(0, 146, 227, 1) 0%, rgba(0, 159, 227, 1) 50%, rgba(82, 209, 236, 1) 100%);
+}
+
+.error-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.error-background-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 55%;
+}
+
+.error-txt {
+    display: flex;
+    flex-direction: column;
+    padding-top: 130px;
+    height: 100%;
+    color: #fff
+}
+
+.error-btn {
+    z-index: 100;
+    width: auto;
+    margin-top: 15px;
+}

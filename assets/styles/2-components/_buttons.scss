@@ -1,0 +1,54 @@
+.btn {
+    z-index: 10;
+    position: relative;
+    display: inline-block;
+    padding: 15px;
+    border-style: solid;
+    border-color: $primary;
+    border-width: 2px;
+    font-size: 1rem;
+    line-height: 1em;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: transparent;
+    color: $primary;
+    transition: color 0.3s ease-in-out;
+}
+
+.btn::before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: calc(100% + 3px);
+    width: 0%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    background-color: $primary;
+    transition: .3s ease-in-out;
+}
+
+.btn:hover {
+    color: #fff;
+
+}
+
+.btn:hover::before {
+    opacity: 1;
+    width: calc(100% + 3px);
+}
+
+// .hero-btn
+//-----------------------
+.hero-btn {
+    width: 170px;
+    font-size: 1.25rem;
+    border-color: $secondary;
+    color: #fff;
+}
+
+.hero-btn::before {
+    background-color: $secondary;
+}

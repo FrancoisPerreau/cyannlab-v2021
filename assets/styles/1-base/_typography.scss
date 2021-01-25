@@ -1,0 +1,33 @@
+/* Typo */
+/* ---------------- */
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Montserrat',
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+.section-title {
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: $primary;
+}
+
+.text-primary {
+    color: $primary;
+}
+
+.text-secondary {
+    color: $secondary;
+}
+
+a {
+    color: $primary;
+}
+
+strong {
+    font-weight: 700;
+}

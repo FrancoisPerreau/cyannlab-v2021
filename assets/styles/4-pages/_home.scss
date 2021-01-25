@@ -1,0 +1,38 @@
+/* PRESENTATION */
+.presentation-txt {
+    font-size: 1.125rem;
+    line-height: 1.5;
+}
+
+
+/* SKILLS */
+.skills-section {
+    margin: 100px 0;
+    padding: 75px 0;
+    background-color: $light;
+}
+
+.skills-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 767.98px) {
+    .skills-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .skill-card:nth-child(1),
+    .skill-card:nth-child(2) {
+        margin-bottom: 60px;
+    }
+}
+
+
+/* LAST-WORKS */
+.works-section-more {
+    margin-top: 30px;
+    text-align: center;
+}

@@ -1,0 +1,42 @@
+.nav-categories {
+    background-color: $secondary;
+}
+
+.nav-categories ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.nav-categories .nav-item {
+    margin: 0;
+    padding: 10px 16px;
+
+}
+
+.nav-categories .nav-link {
+    font-size: .875rem;
+    color: $primary;
+}
+
+.nav-categories .nav-item.active {
+    background-color: $primary;
+}
+
+.nav-categories .nav-item.active a {
+    color: #fff;
+}
+
+.nav-categories .nav-link {
+    color: $primary;
+}
+
+.nav-categories .nav-link::after {
+    top: 1px;
+}
+
+@media screen and (max-width: 330px) {
+    .nav-categories .nav-link {
+        font-size: .75rem;
+    }
+}

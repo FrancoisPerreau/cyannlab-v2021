@@ -1,0 +1,94 @@
+body {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: $dark;
+}
+
+main {
+    padding: 100px 0;
+    background-color: #fff;
+}
+
+@media screen and (max-width: 425px) {
+    main {
+        padding: 50px 0;
+    }
+}
+
+
+/* Block */
+/* ---------------- */
+.bg-primary {
+    background-color: $primary;
+}
+
+.bg-secondary {
+    background-color: $secondary;
+}
+
+.bg-dark {
+    background-color: $dark;
+}
+
+.bg-light {
+    background-color: $light;
+}
+
+.flex-wrap {
+    display: flex;
+}
+
+.jc-start {
+    justify-content: flex-start;
+}
+
+.jc-end {
+    justify-content: flex-end;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+.jc-between {
+    justify-content: space-between;
+}
+
+.jc-around {
+    justify-content: space-around;
+}
+
+
+/* UI */
+/* ---------------- */
+.separator {
+    margin: 30px 0;
+    border: none;
+    height: 3px;
+    width: 116px;
+    background-color: $secondary;
+}
+
+
+
+// WORKS
+//----------------------
+.works-card-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 991.98px) {
+    .works-card {
+        flex-basis: calc(50% - 5px);
+    }
+}
+
+@media screen and (max-width: 575.98px) {
+    .works-card {
+        flex-basis: 100%;
+    }
+}

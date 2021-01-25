@@ -1,0 +1,21 @@
+.skill-card {
+    text-align: center;
+}
+
+.skill-icon {
+    text-align: center;
+}
+
+.skill-icon img {
+    height: 110px;
+}
+
+.skill-card-title {
+    margin-top: 15px;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+
+    span {
+        color: $primary;
+    }
+}
