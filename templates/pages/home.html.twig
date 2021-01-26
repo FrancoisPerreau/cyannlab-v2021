@@ -1,18 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
-
-
 {% block hero %}
     {% if header %}        
         {% include "components/hero.html.twig" with
             {
-               title: header.title,
-               subtitle: header.subtitle,
-               content: header.content,
-               image: header.image,
-               alt: header.title,
-               page: pageName
+               page: pageName,
+               heroHeader: header
             }
         %}
     {% endif %}    

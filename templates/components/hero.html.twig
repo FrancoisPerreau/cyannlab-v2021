@@ -1,19 +1,19 @@
  <div class="hero-wrapper">
      <div class="hero-backround-container">
-         <img class="hero-background-img" src="{{ asset('uploads/headers/') ~ image }}" alt="{{ alt }}">
+         <img class="hero-background-img" src="{{ asset('uploads/headers/') ~ heroHeader.image }}" alt="{{ heroHeader.title }}">
      </div>
 
      <div class="hero-text-wrap">
          <h1 class="hero-title">
-             {{ title }}<br />
+             {{ heroHeader.title }}<br />
          </h1>
          <h2 class="hero-subTitle">
-             {{ subtitle|raw }}
+             {{ heroHeader.subtitle|raw }}
          </h2>
-         {% if content is defined %}
-         <p class="hero-content">
-             {{ content }}
-         </p>
+         {% if heroHeader.content is defined %}
+            <p class="hero-content">
+                {{ heroHeader.content }}
+            </p>
          {% endif %}
          <div class="hero-btn-wrap">
              <a href="/works.html" class="btn hero-btn">Réalisations</a>
