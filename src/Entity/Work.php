@@ -54,9 +54,20 @@ class Work
      */
     private $thumbnailImage;
 
+    /**
+     * @ORM\OneToOne(targetEntity=FeaturedImage::class, mappedBy="work", cascade={"persist", "remove"})
+     */
+    private $featuredImage;
+
+    /**
+     * @ORM\OneToMany(targetEntity=DescriptionImage::class, mappedBy="work")
+     */
+    private $descriptionImages;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->descriptionImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,6 +180,58 @@ class Work
         }
 
         $this->thumbnailImage = $thumbnailImage;
+
+        return $this;
+    }
+
+    public function getFeaturedImage(): ?FeaturedImage
+    {
+        return $this->featuredImage;
+    }
+
+    public function setFeaturedImage(?FeaturedImage $featuredImage): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($featuredImage === null && $this->featuredImage !== null) {
+            $this->featuredImage->setWork(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($featuredImage !== null && $featuredImage->getWork() !== $this) {
+            $featuredImage->setWork($this);
+        }
+
+        $this->featuredImage = $featuredImage;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|DescriptionImage[]
+     */
+    public function getDescriptionImages(): Collection
+    {
+        return $this->descriptionImages;
+    }
+
+    public function addDescriptionImage(DescriptionImage $descriptionImage): self
+    {
+        if (!$this->descriptionImages->contains($descriptionImage)) {
+            $this->descriptionImages[] = $descriptionImage;
+            $descriptionImage->setWork($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDescriptionImage(DescriptionImage $descriptionImage): self
+    {
+        if ($this->descriptionImages->removeElement($descriptionImage)) {
+            // set the owning side to null (unless already changed)
+            if ($descriptionImage->getWork() === $this) {
+                $descriptionImage->setWork(null);
+            }
+        }
 
         return $this;
     }
