@@ -49,6 +49,11 @@ class Work
      */
     private $categories;
 
+    /**
+     * @ORM\OneToOne(targetEntity=ThumbnailImage::class, mappedBy="work", cascade={"persist", "remove"})
+     */
+    private $thumbnailImage;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -142,6 +147,28 @@ class Work
         if ($this->categories->removeElement($category)) {
             $category->removeWork($this);
         }
+
+        return $this;
+    }
+
+    public function getThumbnailImage(): ?ThumbnailImage
+    {
+        return $this->thumbnailImage;
+    }
+
+    public function setThumbnailImage(?ThumbnailImage $thumbnailImage): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($thumbnailImage === null && $this->thumbnailImage !== null) {
+            $this->thumbnailImage->setWork(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($thumbnailImage !== null && $thumbnailImage->getWork() !== $this) {
+            $thumbnailImage->setWork($this);
+        }
+
+        $this->thumbnailImage = $thumbnailImage;
 
         return $this;
     }
