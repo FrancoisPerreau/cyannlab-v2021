@@ -4,7 +4,18 @@
 
 
 {% block hero %}
-{% include "components/hero.html.twig" %}
+    {% if header %}        
+        {% include "components/hero.html.twig" with
+            {
+               title: header.title,
+               subtitle: header.subtitle,
+               content: header.content,
+               image: header.image,
+               alt: header.title,
+               page: pageName
+            }
+        %}
+    {% endif %}    
 {% endblock %}
 
 {% block body %}

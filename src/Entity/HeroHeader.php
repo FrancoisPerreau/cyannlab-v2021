@@ -44,10 +44,22 @@ class HeroHeader
      */
     private $pages;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
     public function __construct()
     {
         $this->pages = new ArrayCollection();
     }
+
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 
     public function getId(): ?int
     {
@@ -128,6 +140,18 @@ class HeroHeader
                 $page->setHeroHeader(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

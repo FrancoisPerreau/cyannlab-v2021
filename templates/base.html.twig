@@ -15,17 +15,18 @@
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
-
+    
 </head>
-<header>
-    <!-- Navbar -->
-    {% include "layout/navbar.html.twig" %}
-
-    <!-- Hero -->
-    {% block hero %}{% endblock %}
-</header>
 
 <body>
+    <header>
+        <!-- Navbar -->
+        {% include "layout/navbar.html.twig" %}
+    
+        <!-- Hero -->
+        {% block hero %}{% endblock %}
+    </header>
+
     {% block body %}{% endblock %}
 
 
