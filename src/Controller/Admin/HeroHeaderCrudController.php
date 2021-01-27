@@ -20,13 +20,14 @@ class HeroHeaderCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            TextField::new('title'),
-            TextField::new('subtitle'),
-            TextareaField::new('content'),
-            ImageField::new('image')
+            TextField::new('name', 'Nom'),
+            TextField::new('title', 'Titre'),
+            TextField::new('subtitle', 'Sous-titre'),
+            TextareaField::new('content', 'Contenu'),
+            ImageField::new('image', 'Image')
                 ->setBasePath('uploads/headers/')
-                ->setUploadDir('public/uploads/headers/')->setUploadedFileNamePattern('[randomhash].[extension]')
+                ->setUploadDir('public/uploads/headers/')
+                ->setUploadedFileNamePattern('[randomhash].[extension]')
                 ->setRequired(false),
         ];
     }

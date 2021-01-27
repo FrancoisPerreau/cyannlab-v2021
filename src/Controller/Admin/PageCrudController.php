@@ -19,9 +19,9 @@ class PageCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name'),
-            TextField::new('title'),
-            TextareaField::new('description'),
+            TextField::new('name', 'Nom'),
+            TextField::new('title', 'Titre'),
+            TextareaField::new('description', 'Meta description'),
             AssociationField::new('heroHeader')
         ];
     }
