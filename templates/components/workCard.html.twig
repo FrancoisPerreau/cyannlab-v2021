@@ -1,14 +1,13 @@
  <article class="works-card">
      <figure class="works-card-effect">
          <div class="word-card-title-wrap">
-             <h3 class="works-card-title">Médiacoms</h3>
+             <h3 class="works-card-title">{{ work.title }}</h3>
          </div>
-         <img src="upload/works/mediacoms_xs.jpg" alt="site de Médiacoms">
+         <img src="{{ asset('uploads/projets/' ~ work.thumbnail) }}" alt="site de Médiacoms">
          <figcaption>
-             <p class="works-card-subtitle">Site internet</p>
+             <p class="works-card-subtitle">{{ work.subtitle }}</p>
              <p class="works-card-categories">
-                 <span class="category">Projet web</span>
-                 <span class="category">Identité visuelle</span>
+                 <span class="category">{{ work.categorie }}</span>
              </p>
          </figcaption>
          <a class="works-card-link" href="#"></a>

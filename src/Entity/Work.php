@@ -25,7 +25,7 @@ class Work
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $subtitle;
 
@@ -44,30 +44,45 @@ class Work
      */
     private $created_at;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=Category::class, mappedBy="work")
-     */
-    private $categories;
 
     /**
-     * @ORM\OneToOne(targetEntity=ThumbnailImage::class, mappedBy="work", cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255)
      */
-    private $thumbnailImage;
+    private $thumbnail;
 
     /**
-     * @ORM\OneToOne(targetEntity=FeaturedImage::class, mappedBy="work", cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255)
      */
     private $featuredImage;
 
     /**
-     * @ORM\OneToMany(targetEntity=DescriptionImage::class, mappedBy="work")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $descriptionImages;
+    private $imageOne;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageTwo;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="work")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isOnHome;
+
+
+
+
+
 
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
-        $this->descriptionImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -135,103 +150,76 @@ class Work
         return $this;
     }
 
-    /**
-     * @return Collection|Category[]
-     */
-    public function getCategories(): Collection
+
+
+    public function getThumbnail(): ?string
     {
-        return $this->categories;
+        return $this->thumbnail;
     }
 
-    public function addCategory(Category $category): self
+    public function setThumbnail(string $thumbnail): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
-            $category->addWork($this);
-        }
+        $this->thumbnail = $thumbnail;
 
         return $this;
     }
 
-    public function removeCategory(Category $category): self
-    {
-        if ($this->categories->removeElement($category)) {
-            $category->removeWork($this);
-        }
-
-        return $this;
-    }
-
-    public function getThumbnailImage(): ?ThumbnailImage
-    {
-        return $this->thumbnailImage;
-    }
-
-    public function setThumbnailImage(?ThumbnailImage $thumbnailImage): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($thumbnailImage === null && $this->thumbnailImage !== null) {
-            $this->thumbnailImage->setWork(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($thumbnailImage !== null && $thumbnailImage->getWork() !== $this) {
-            $thumbnailImage->setWork($this);
-        }
-
-        $this->thumbnailImage = $thumbnailImage;
-
-        return $this;
-    }
-
-    public function getFeaturedImage(): ?FeaturedImage
+    public function getFeaturedImage(): ?string
     {
         return $this->featuredImage;
     }
 
-    public function setFeaturedImage(?FeaturedImage $featuredImage): self
+    public function setFeaturedImage(string $featuredImage): self
     {
-        // unset the owning side of the relation if necessary
-        if ($featuredImage === null && $this->featuredImage !== null) {
-            $this->featuredImage->setWork(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($featuredImage !== null && $featuredImage->getWork() !== $this) {
-            $featuredImage->setWork($this);
-        }
-
         $this->featuredImage = $featuredImage;
 
         return $this;
     }
 
-    /**
-     * @return Collection|DescriptionImage[]
-     */
-    public function getDescriptionImages(): Collection
+    public function getImageOne(): ?string
     {
-        return $this->descriptionImages;
+        return $this->imageOne;
     }
 
-    public function addDescriptionImage(DescriptionImage $descriptionImage): self
+    public function setImageOne(?string $imageOne): self
     {
-        if (!$this->descriptionImages->contains($descriptionImage)) {
-            $this->descriptionImages[] = $descriptionImage;
-            $descriptionImage->setWork($this);
-        }
+        $this->imageOne = $imageOne;
 
         return $this;
     }
 
-    public function removeDescriptionImage(DescriptionImage $descriptionImage): self
+    public function getImageTwo(): ?string
     {
-        if ($this->descriptionImages->removeElement($descriptionImage)) {
-            // set the owning side to null (unless already changed)
-            if ($descriptionImage->getWork() === $this) {
-                $descriptionImage->setWork(null);
-            }
-        }
+        return $this->imageTwo;
+    }
+
+    public function setImageTwo(?string $imageTwo): self
+    {
+        $this->imageTwo = $imageTwo;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getIsOnHome(): ?bool
+    {
+        return $this->isOnHome;
+    }
+
+    public function setIsOnHome(bool $isOnHome): self
+    {
+        $this->isOnHome = $isOnHome;
 
         return $this;
     }

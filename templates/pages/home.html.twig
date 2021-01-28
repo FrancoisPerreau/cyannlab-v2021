@@ -68,6 +68,9 @@
     <section class="last-works-section container">
         <h2 class="section-title">Quelques réalisations...</h2>
         <div class="works-card-wrapper">
+            {% for work in works %} 
+                {% include 'components/workCard.html.twig' with { work: work } %}
+            {% endfor %}
             
         </div>
 

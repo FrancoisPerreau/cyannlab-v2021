@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @ORM\Entity(repositoryClass=CategorieRepository::class)
  */
-class Category
+class Categorie
 {
     /**
      * @ORM\Id
@@ -25,7 +25,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Work::class, inversedBy="categories")
+     * @ORM\OneToMany(targetEntity=Work::class, mappedBy="categorie")
      */
     private $work;
 
@@ -39,7 +39,6 @@ class Category
     {
         return $this->getName();
     }
-
 
 
     public function getId(): ?int
@@ -71,6 +70,7 @@ class Category
     {
         if (!$this->work->contains($work)) {
             $this->work[] = $work;
+            $work->setCategorie($this);
         }
 
         return $this;
@@ -78,7 +78,12 @@ class Category
 
     public function removeWork(Work $work): self
     {
-        $this->work->removeElement($work);
+        if ($this->work->removeElement($work)) {
+            // set the owning side to null (unless already changed)
+            if ($work->getCategorie() === $this) {
+                $work->setCategorie(null);
+            }
+        }
 
         return $this;
     }

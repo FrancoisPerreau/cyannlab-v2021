@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Categorie;
 use App\Entity\Category;
 use App\Entity\HeroHeader;
 use App\Entity\Page;
@@ -33,7 +34,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Pages', 'far fa-newspaper', Page::class);
         yield MenuItem::linkToCrud('Headers', 'far fa-window-maximize', HeroHeader::class);
-        yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Projets', 'fas fa-desktop', Work::class);
+        yield MenuItem::linkToCrud('Categories', 'fas fa-list', Categorie::class);
     }
 }
