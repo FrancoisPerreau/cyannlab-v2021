@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block hero %}
-    {% if header %}        
+    {% if header is defined %}
         {% include "components/hero.html.twig" with
             {
-               page: pageName,
-               heroHeader: header
+            heroHeader: header
             }
         %}
-    {% endif %}    
+    {% endif %}
 {% endblock %}
 
 {% block body %}
@@ -35,7 +34,7 @@
     <!-- ================================ -->
     <section class="skills-section">
         <div class="skills-wrapper container">
-           {% include 'components/skillCard.html.twig' with
+            {% include 'components/skillCard.html.twig' with
                 {
                 image: asset('assets/images/picto-experience.png'),
                 alt:'Expérence',
@@ -44,7 +43,7 @@
                 }
             %}
 
-           {% include 'components/skillCard.html.twig' with
+            {% include 'components/skillCard.html.twig' with
                 {
                 image: asset('assets/images/picto-analyse.png'),
                 alt:'Analyser',
@@ -53,7 +52,7 @@
                 }
             %}
 
-           {% include 'components/skillCard.html.twig' with
+            {% include 'components/skillCard.html.twig' with
                 {
                 image: asset('assets/images/picto-solution.png'),
                 alt:'Solution',
@@ -68,15 +67,14 @@
     <section class="last-works-section container">
         <h2 class="section-title">Quelques réalisations...</h2>
         <div class="works-card-wrapper">
-            {% for work in works %} 
+            {% for work in works %}
                 {% include 'components/workCard.html.twig' with { work: work } %}
             {% endfor %}
-            
         </div>
 
-
-
-
+        <p class="works-section-more">
+            <a class="btn" href="{{ path('works') }}">Voir plus de projets</a>
+        </p>
     </section>
 
 </main>

@@ -69,6 +69,15 @@ main {
     background-color: $secondary;
 }
 
+.alert {
+    text-align: center;
+    font-size: 0.875rem;
+    background-color: $secondary;
+    color: $dark;
+    padding: 10px 5px;
+    margin-bottom: 30px;
+}
+
 
 
 // WORKS

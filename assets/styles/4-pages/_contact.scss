@@ -15,7 +15,7 @@
 
 .contact-informations-icon-v,
 .contact-informations-icon-h {
-    margin-right: 5px;
+    margin-right: 2px;
 }
 
 .contact-informations-icon-v {
@@ -53,6 +53,10 @@
     justify-content: space-between;
 }
 
+.form-group {
+    margin-bottom: 30px;
+}
+
 .contact-form-row .form-group {
     width: calc(50% - 16px);
 }
@@ -65,7 +69,7 @@
 .contact-form input,
 .contact-form textarea {
     display: block;
-    margin-bottom: 30px;
+
     padding: 10px;
     width: calc(100% - 20px);
 }
@@ -76,13 +80,24 @@
 }
 
 .contact-form textarea {
-    margin-top: 15px;
+    margin-top: 55px;
     border: 1px solid $secondary;
     resize: vertical;
 }
 
 .btn-submit {
     padding: 10px 20px;
+}
+
+
+.form-error-message {
+    margin-top: 5px;
+    font-size: 0.75rem;
+    color: $alert;
+
+    li {
+        list-style: none;
+    }
 }
 
 @media screen and (max-width: 767.98px) {

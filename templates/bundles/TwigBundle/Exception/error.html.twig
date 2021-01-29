@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page introuvable | {{ parent() }} {% endblock %}
+
+{% block body %}
+    <section class="error-section">
+        <div class="container error-wrapper">
+            <img class="error-background-img" src="{{ asset('assets/images/cyannlab-404.png') }}" alt="Oups !!">
+
+            <div class="error-txt">
+                <h1 class="hero-title">
+                    Désolé !
+                </h1>
+                <h2 class="hero-subTitle">
+                    La page que vous cherchez
+                    <span class="hero-subTitle-bold">n’existe pas.</span>
+                </h2>
+                <p><a href="{{  path('home') }}" class="btn hero-btn error-btn">Retour à la page d'accueil</a></p>
+                
+                </div>
+            </div>
+
+
+        </div>
+
+    </section>
+{% endblock %}

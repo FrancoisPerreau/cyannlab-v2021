@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Categorie;
-use App\Entity\Category;
 use App\Entity\HeroHeader;
 use App\Entity\Page;
 use App\Entity\Work;

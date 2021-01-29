@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block hero %}
+    {% if header is defined %}
+        {% include "components/hero.html.twig" with
+            {
+            heroHeader: header
+            }
+        %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+<main class="container-full bg-light">
+       <section class="contact-section">
+            <div class="contact-informations bg-primary">
+                <div class="contact-information-wrap">
+                    <p>
+                        <span class="contact-informations-icon-v">
+                            <img class="contact-informations-icon-v" src="{{ asset('assets/images/icon-location.svg') }}" alt="Adresse">
+                        </span>
+                        8 rue Kléber, 18000 Bourges
+                    </p>
+                    <p>
+                        <span class="contact-informations-icon-v">
+                            <img src="{{ asset('assets/images/icon-mobil.svg') }}" alt="Téléphone">
+                        </span>
+                        06 03 53 31 02
+                    </p>
+                    <p>
+                        <span class="contact-informations-icon-v">
+                            <img src="{{ asset('assets/images/icon-email.svg') }}" alt="Email">
+                        </span>
+                        contact@cyannlab.com</p>
+                </div>
+
+                <p class="icon-social-wrap">
+                    <a href="https://www.linkedin.com/in/françois-perreau-14046a4b/" title="Lien vers Linkedin">
+                        <img class="icon-social" src="{{ asset('assets/images/icon-linkedin.svg') }}" alt="Linkedin">
+                    </a>
+                </p>
+            </div>
+
+            <!-- Form -->
+            <!-- ================================ -->
+            <div class="contact-form-wrapper">
+                {% for message in app.flashes('success') %}           
+                    <div class="alert">
+                        <p>Votre email a bien été envoyer, je vous répondrais dans les plus brefs délais.</p>
+                    </div>
+                {% endfor %}
+
+                {{ form_start(form, { 'attr': { 'class': 'contact-form' }}) }}
+                    <div class="contact-form-row">
+                        <div class="form-group">
+                            {{ form_label(form.firstname, 'Prénom', {'label_attr': {'class': 'label-hide'}}) }}
+                            {{ form_widget(form.firstname, { 'attr': { 'placeholder': 'Votre prénom*' } }) }} 
+                            <div class="form-error-message">{{ form_errors(form.firstname) }}</div>
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.lastname, 'Nom', {'label_attr': {'class': 'label-hide'}}) }}
+                            {{ form_widget(form.lastname, { 'attr': { 'placeholder': 'Votre nom*' } }) }}
+                            <div class="form-error-message">{{ form_errors(form.lastname) }}</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.email, 'Email', {'label_attr': {'class': 'label-hide'}}) }}
+                        {{ form_widget(form.email, { 'attr': { 'placeholder': 'Votre email*' } }) }}
+                        <div class="form-error-message">{{ form_errors(form.email) }}</div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.message, 'Message', {'label_attr': {'class': 'label-hide'}}) }}
+                        {{ form_widget(form.message, { 'attr': { 'placeholder': 'Votre message*', 'rows': '10' } }) }} 
+                        <div class="form-error-message">{{ form_errors(form.message) }}</div>
+                    </div>
+
+                    {{ form_rest(form) }}
+
+                    <div class="flex-wrap jc-end">
+                        <button class="btn btn-submit" type="submit">Envoyer</button>
+                    </div>
+                
+                {{ form_end(form) }}                
+            </div>
+        </section>
+    </main>
+{% endblock %}

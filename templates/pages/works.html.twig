@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block hero %}
+    {% if header is defined %}
+        {% include "components/hero.html.twig" with
+            {
+            heroHeader: header
+            }
+        %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<!-- NAV CATEGORIES -->
+{% set route = app.request.get('_route') %}
+{% set requestSlug = app.request.get('slug') %}
+
+<nav class="nav-categories">
+    <div class="container">
+        <ul>
+            <li class="nav-item {{ route == 'works' ? 'active' }}">
+                <a href="{{ path('works') }}" class="nav-link">Tous les projets</a>
+            </li>
+            {% for category in categories %}
+                <li class="nav-item {{ requestSlug == category.slug ? 'active' }} ">
+                    <a href="{{ path('works_filter', {'slug': category.slug}) }}" class="nav-link">{{ category.name }}</a>              
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
+
+
+<main>
+    <!-- WORKS -->
+    <!-- ================================ -->
+    <section class="last-works-section container">
+        <div class="works-card-wrapper">
+            {% for work in works %}
+                {% include 'components/workCard.html.twig' with { work: work } %}
+            {% endfor %}
+        </div>
+    </section>
+
+</main>
+{% endblock %}

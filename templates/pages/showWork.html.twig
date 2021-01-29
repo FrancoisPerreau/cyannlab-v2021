@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block hero %}
+    {% if header is defined %}
+        {% include "components/hero.html.twig" with
+            {
+            heroHeader: header
+            }
+        %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<!-- NAV CATEGORIES -->
+{% set route = app.request.get('_route') %}
+{% set requestSlug = app.request.get('slug') %}
+
+<nav class="nav-categories">
+    <div class="container">
+        <ul>
+            <li class="nav-item {{ route == 'works' ? 'active' }}">
+                <a href="{{ path('works') }}" class="nav-link">Tous les projets</a>
+            </li>
+            {% for category in categories %}
+                <li class="nav-item {{ requestSlug == category.slug ? 'active' }} ">
+                <a href="{{ path('works_filter', {'slug': category.slug}) }}" class="nav-link">{{ category.name }}</a>
+              
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
+
+
+<main>
+    <!-- WORK -->
+    <!-- ================================ -->
+     <section class="sigle-container container">
+            <!-- description -->
+            <div class="single-description-wrapper flex-wrap">
+                <div class="single-description-wrap">
+                    <h2 class="section-title">{{ work.title }}</h2>
+                    <p class="single-description-categories">
+                        <span class="category">{{ work.categorie }}</span>
+                    </p>
+                    <hr class="separator" />
+                    <h3 class="single-description-subtitle">{{ work.subtitle }}</h3>
+                    <p class="single-description-content">
+                        {{ work.description|raw }}
+                    </p>
+                </div>
+                {% if work.link  %}
+                    <div class="single-description-btn-wrap">
+                        <p>
+                            <a href="{{ work.link }}" class="btn">Voir le site</a>
+                        </p>
+                    </div>
+                {% endif %}                
+            </div>
+
+            <!-- images -->
+            <div class="sigle-images-wrapper flex-wrap">
+                <div class="sigle-featured-image">
+                    <img src="{{ asset('uploads/projets/' ~ work.featuredImage ) }}" alt="{{ work.title }} : {{ work.subtitle }}">
+                </div>
+                <div class="sigle-description-image-wrap flex-wrap">
+                    <div class="image-wrap">
+                        <img class="sigle-description-image" src="{{ asset('uploads/projets/' ~ work.imageOne ) }}" alt="{{ work.title }} : {{ work.subtitle }}" >
+                    </div>
+                    <div class="image-wrap">
+                    <img  class="sigle-description-image" src="{{ asset('uploads/projets/' ~ work.imageTwo ) }}" alt="{{ work.title }} : {{ work.subtitle }}" >
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+</main>
+{% endblock %}

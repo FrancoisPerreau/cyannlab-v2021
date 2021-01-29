@@ -6,6 +6,7 @@ use App\Entity\HeroHeader;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
  * @method HeroHeader|null find($id, $lockMode = null, $lockVersion = null)
  * @method HeroHeader|null findOneBy(array $criteria, array $orderBy = null)

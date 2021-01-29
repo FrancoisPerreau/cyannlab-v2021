@@ -19,6 +19,19 @@ class WorkRepository extends ServiceEntityRepository
         parent::__construct($registry, Work::class);
     }
 
+    public function findByCategorieSlug($slug)
+    {
+        return $this->createQueryBuilder('w')
+            ->select('w', 'c')
+            ->join('w.categorie', 'c')
+            ->andWhere('c.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->orderBy('w.id', 'ASC')
+            ->setMaxResults(16)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Work[] Returns an array of Work objects
     //  */

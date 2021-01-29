@@ -37,6 +37,8 @@ class Page
      */
     private $heroHeader;
 
+
+
     public function getId(): ?int
     {
         return $this->id;

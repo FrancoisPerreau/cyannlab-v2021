@@ -27,7 +27,6 @@ class HomeController extends AbstractController
             'pageTitle' => $page->getTitle(),
             'pageDescription' => $page->getDescription(),
             'header' => $page->getHeroHeader(),
-            'pageName' => $page->getName(),
             'works' => $worksOnHome
         ]);
     }
