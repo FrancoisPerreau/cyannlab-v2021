@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Notification\ContactNotification;
 use App\Repository\PageRepository;
+use App\Services\ReCaptchaGoogleService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function conatct(PageRepository $pageRepository, Request $request, ContactNotification $notification): Response
+    public function conatct(PageRepository $pageRepository, Request $request, ContactNotification $notification, ReCaptchaGoogleService $reCaptchaGoogleService): Response
     {
         $page = $pageRepository->findOneByName('contact');
 
@@ -26,23 +27,12 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Google recaptcha
-            //-----------------------------------
-            $recaptchaUrl = 'https://www.google.com/recaptcha/api/siteverify';
-            $recaptchaSecretKey = $this->getParameter('google_captcha_secret_key');
+            //-----------------------------------            
             $recaptchaResponse = $form->get('recaptcha')->getData();
 
-            // On fait la requette
-            $recaptcha = file_get_contents($recaptchaUrl . '?secret=' . $recaptchaSecretKey . '&response=' . $recaptchaResponse);
-            $recaptcha = json_decode($recaptcha);
-            var_dump($recaptcha->success);
-            // Si  success
-            if ($recaptcha->success === true) {
-                var_dump($recaptcha->score);
-                // on fixe le score minimum souhaité
-                if ($recaptcha->score >= 0.6) {
-                    $notification->notify($contact);
-                    $this->addFlash('success', 'Votre email a bien été envoyer, je vous répondrais dans les plus brefs délais.');
-                }
+            if ($reCaptchaGoogleService->checkGoogle($recaptchaResponse)) {
+                $notification->notify($contact);
+                $this->addFlash('success', 'Votre email a bien été envoyer, je vous répondrais dans les plus brefs délais.');
             }
 
             $this->redirectToRoute('contact');
