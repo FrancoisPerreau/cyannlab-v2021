@@ -52,6 +52,8 @@ class Contact
     private $message;
 
 
+    private $recaptcha;
+
 
     /**
      * Get the value of firstname
@@ -62,6 +64,7 @@ class Contact
     {
         return $this->firstname;
     }
+
 
     /**
      * Set the value of firstname
@@ -146,6 +149,26 @@ class Contact
     public function setMessage(?string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of recaptcha
+     */
+    public function getRecaptcha(): ?string
+    {
+        return $this->recaptcha;
+    }
+
+    /**
+     * Set the value of recaptcha
+     *
+     * @return  self
+     */
+    public function setRecaptcha(?string $recaptcha): self
+    {
+        $this->recaptcha = $recaptcha;
 
         return $this;
     }
