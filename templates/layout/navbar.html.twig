@@ -9,6 +9,9 @@
             <ul>
                 <li class="nav-item"><a class="nav-link {{ 'works' in route ? 'active' }}" href="{{ path('works') }}">Réalisations</a></li>
                 <li class="nav-item"><a class="nav-link {{ route == 'contact' ? 'active' }} " href="{{ path('contact') }}">contact</a></li>
+                {% if app.user %}
+                    <li class="nav-item"><a class="nav-link {{ route == 'admin' ? 'active' }} " href="{{ path('admin') }}">admin</a></li>
+                {% endif %}
             </ul>
         </nav>
         <div class="burger-top-nav">
