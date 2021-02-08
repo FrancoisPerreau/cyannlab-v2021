@@ -9,6 +9,15 @@
       "css": [
         "/build/app.css"
       ]
+    },
+    "connexion": {
+      "js": [
+        "/build/runtime.js",
+        "/build/connexion.js"
+      ],
+      "css": [
+        "/build/connexion.css"
+      ]
     }
   }
 }

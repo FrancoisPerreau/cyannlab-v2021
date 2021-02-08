@@ -9,6 +9,7 @@
 import './styles/app.scss';
 
 
+
 import './scripts/navbar';
 import './scripts/heroParallax';
 import './scripts/modale';
