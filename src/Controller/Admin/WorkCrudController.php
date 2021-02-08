@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Work;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -20,6 +21,14 @@ class WorkCrudController extends AbstractCrudController
     {
         return Work::class;
     }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Projet')
+            ->setEntityLabelInPlural('Projets');
+    }
+
 
     public function configureFields(string $pageName): iterable
     {

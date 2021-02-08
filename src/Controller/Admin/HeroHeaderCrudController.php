@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\HeroHeader;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
@@ -14,6 +15,14 @@ class HeroHeaderCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return HeroHeader::class;
+    }
+
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Header')
+            ->setEntityLabelInPlural('Headers');
     }
 
 
