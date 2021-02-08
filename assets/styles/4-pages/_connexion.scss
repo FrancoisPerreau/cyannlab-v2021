@@ -1,0 +1,17 @@
+html,
+body,
+main {
+    height: 100%;
+}
+
+.container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 90px);
+}
+
+.login-form {
+    min-width: 600px;
+    padding: 30px;
+}
