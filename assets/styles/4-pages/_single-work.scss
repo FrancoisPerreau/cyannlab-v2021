@@ -7,6 +7,7 @@
 .sigle-featured-image {
     flex-basis: calc(60% - 15px);
     max-height: 568px;
+    overflow-y: hidden;
 
 }
 
@@ -19,6 +20,10 @@
     font-size: 1.125rem;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.single-description-content {
+    line-height: 1.3em;
 }
 
 .single-description-technology {
