@@ -6,6 +6,8 @@
 .single-description-wrap,
 .sigle-featured-image {
     flex-basis: calc(60% - 15px);
+    max-height: 568px;
+
 }
 
 .single-description-categories {
@@ -13,9 +15,18 @@
 }
 
 .single-description-subtitle {
+    margin-bottom: 5px;
     font-size: 1.125rem;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.single-description-technology {
+    margin-top: 10px;
+    font-size: .725rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $medium
 }
 
 .single-description-btn-wrap,
@@ -46,16 +57,23 @@
 }
 
 .sigle-description-image-wrap img {
-    height: 250px;
+    height: 274px;
     object-fit: cover;
     width: 100%;
     background-color: $light;
 }
 
+@media screen and (max-width: 1199.98px) {
+    .sigle-description-image-wrap img {
+        height: 227px;
+
+    }
+}
+
 
 @media screen and (max-width: 991.98px) {
     .sigle-description-image-wrap img {
-        height: 160px;
+        height: 164px;
     }
 }
 
@@ -97,6 +115,6 @@
     }
 
     .image-wrap img {
-        height: 250px
+        height: 300px
     }
 }

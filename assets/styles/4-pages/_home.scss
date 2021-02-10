@@ -36,3 +36,15 @@
     margin-top: 30px;
     text-align: center;
 }
+
+@media screen and (max-width: 991.98px) {
+    .works-card {
+        flex-basis: calc(50% - 5px);
+    }
+}
+
+@media screen and (max-width: 424.98px) {
+    .works-card {
+        flex-basis: 100%;
+    }
+}
