@@ -48,6 +48,11 @@
                     <p class="single-description-content">
                         {{ work.description|raw }}
                     </p>
+                    {% if work.technology %}
+                        <p class="single-description-technology">
+                            {{ work.technology }}
+                        </p>
+                    {% endif %}
                 </div>
                 {% if work.link  %}
                     <div class="single-description-btn-wrap">

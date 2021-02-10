@@ -76,6 +76,11 @@ class Work
      */
     private $isOnHome;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $technology;
+
 
 
     public function getId(): ?int
@@ -213,6 +218,18 @@ class Work
     public function setIsOnHome(bool $isOnHome): self
     {
         $this->isOnHome = $isOnHome;
+
+        return $this;
+    }
+
+    public function getTechnology(): ?string
+    {
+        return $this->technology;
+    }
+
+    public function setTechnology(?string $technology): self
+    {
+        $this->technology = $technology;
 
         return $this;
     }

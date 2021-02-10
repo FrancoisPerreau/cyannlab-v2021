@@ -39,6 +39,8 @@ class WorkCrudController extends AbstractCrudController
                 ->setRequired(true),
             TextareaField::new('description', 'Description')
                 ->hideOnIndex(),
+            TextField::new('technology', 'Déscription technique')
+                ->hideOnIndex(),
             UrlField::new('link', 'Lien vers le site')
                 ->hideOnIndex(),
             DateTimeField::new('created_at', 'Créé le')->setFormat('dd/MM/yyyy'),
