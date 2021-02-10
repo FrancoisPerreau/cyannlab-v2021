@@ -17,7 +17,9 @@ class WorkController extends AbstractController
     public function works(PageRepository $pageRepository, WorkRepository $workRepository, CategorieRepository $categorieRepository): Response
     {
         $page = $pageRepository->findOneByName('works');
-        $works = $workRepository->findAll();
+        // $works = $workRepository->findAll();
+
+        $works = $workRepository->findBy([], ['created_at' => 'DESC'], 16);
         $categories = $categorieRepository->findAll();
 
         return $this->render('pages/works.html.twig', [

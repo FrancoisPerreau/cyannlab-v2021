@@ -26,7 +26,7 @@ class WorkRepository extends ServiceEntityRepository
             ->join('w.categorie', 'c')
             ->andWhere('c.slug = :slug')
             ->setParameter('slug', $slug)
-            ->orderBy('w.id', 'ASC')
+            ->orderBy('w.created_at', 'DESC')
             ->setMaxResults(16)
             ->getQuery()
             ->getResult();

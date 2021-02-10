@@ -16,12 +16,10 @@ class HomeController extends AbstractController
     public function home(PageRepository $pageRepository, WorkRepository $workRepository): Response
     {
         $page = $pageRepository->findOneByName('home');
-        // $worksOnHome = $workRepository->findBy(['isOnHome' => 1]);
 
         //findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
-        $worksOnHome = $workRepository->findBy(['isOnHome' => 1], ['created_at' => 'ASC'], 4);
+        $worksOnHome = $workRepository->findBy(['isOnHome' => 1], ['created_at' => 'DESC'], 4);
 
-        // dd($worksOnHome);
 
         return $this->render('pages/home.html.twig', [
             'pageTitle' => $page->getTitle(),
