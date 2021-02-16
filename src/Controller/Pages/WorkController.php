@@ -65,12 +65,18 @@ class WorkController extends AbstractController
         $page = $pageRepository->findOneByName('works');
         $categories = $categorieRepository->findAll();
 
+        $previousWork = $workRepository->findPreviousWork($work->getCreatedAt());
+        $nextWork = $workRepository->findNextWork($work->getCreatedAt());
+        // dd($previousWork, $nextWork);
+
 
         return $this->render('pages/showWork.html.twig', [
             'pageTitle' => $work->getTitle(),
             'pageDescription' => $work->getDescription(),
             'header' => $page->getHeroHeader(),
             'work' => $work,
+            'previousWork' => $previousWork,
+            'nextWork' => $nextWork,
             'categories' => $categories
         ]);
     }

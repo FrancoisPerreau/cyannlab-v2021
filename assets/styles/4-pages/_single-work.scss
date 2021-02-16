@@ -1,3 +1,20 @@
+.single-content {
+    padding-top: 50px;
+}
+
+.prevNext-wrapper {
+    margin-bottom: 45px;
+}
+
+.prevNext-wrapper .btn {
+    width: 130px;
+    font-size: .875rem;
+}
+
+.prevNext-wrapper .btn:nth-child(1) {
+    margin-right: 25px;
+}
+
 .single-description-wrapper,
 .sigle-images-wrapper {
     justify-content: space-between;

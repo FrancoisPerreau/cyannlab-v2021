@@ -32,6 +32,29 @@ class WorkRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+    public function findPreviousWork($date)
+    {
+        return $this->createQueryBuilder('w')
+            ->andWhere('w.created_at > :date')
+            ->setParameter('date', $date)
+            ->orderBy('w.created_at', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+
+    public function findNextWork($date)
+    {
+        return $this->createQueryBuilder('w')
+            ->andWhere('w.created_at < :date')
+            ->setParameter('date', $date)
+            ->orderBy('w.created_at', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
     // /**
     //  * @return Work[] Returns an array of Work objects
     //  */

@@ -14,30 +14,39 @@
     background-color: transparent;
     color: $primary;
     transition: color 0.3s ease-in-out;
+
+    &::before {
+        content: "";
+        z-index: -1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: calc(100% + 3px);
+        width: 0%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        background-color: $primary;
+        transition: .3s ease-in-out;
+    }
+
+    &:hover {
+        color: #fff;
+    }
+
+    &:hover::before {
+        opacity: 1;
+        width: calc(100% + 3px);
+    }
 }
 
-.btn::before {
-    content: "";
-    z-index: -1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: calc(100% + 3px);
-    width: 0%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    background-color: $primary;
-    transition: .3s ease-in-out;
-}
 
-.btn:hover {
-    color: #fff;
+.btn-secondary {
+    border-color: $secondary;
+    color: $secondary;
 
-}
-
-.btn:hover::before {
-    opacity: 1;
-    width: calc(100% + 3px);
+    &:before {
+        background-color: $secondary;
+    }
 }
 
 // .hero-btn
@@ -47,8 +56,11 @@
     font-size: 1.25rem;
     border-color: $secondary;
     color: #fff;
+
+    &::before {
+        background-color: $secondary;
+
+    }
 }
 
-.hero-btn::before {
-    background-color: $secondary;
-}
+.hero-btn::before {}
