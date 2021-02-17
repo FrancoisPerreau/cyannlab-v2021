@@ -39,7 +39,8 @@
     }
 }
 
-
+// btn-secondary
+//-----------------------
 .btn-secondary {
     border-color: $secondary;
     color: $secondary;
@@ -59,8 +60,5 @@
 
     &::before {
         background-color: $secondary;
-
     }
 }
-
-.hero-btn::before {}
