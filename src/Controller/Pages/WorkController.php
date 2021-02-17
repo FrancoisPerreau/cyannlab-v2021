@@ -67,7 +67,6 @@ class WorkController extends AbstractController
 
         $previousWork = $workRepository->findPreviousWork($work->getCreatedAt());
         $nextWork = $workRepository->findNextWork($work->getCreatedAt());
-        // dd($previousWork, $nextWork);
 
 
         return $this->render('pages/showWork.html.twig', [

@@ -15,7 +15,7 @@
 {% set route = app.request.get('_route') %}
 {% set requestSlug = app.request.get('slug') %}
 
-<nav class="nav-categories" id="prevNext-ink">
+<nav class="nav-categories" id="prev-next-ink">
     <div class="container" id="test">
         <ul>
             <li class="nav-item {{ route == 'works' ? 'active' }}">
@@ -34,13 +34,15 @@
 
 
 <main class="single-content">
+    <!-- Précedent et suivant -->
+    <!-- ================================ -->
     <div class="container prevNext-wrapper">
         {% if previousWork %}
-            <a href="{{ path('show_work', {'id': previousWork.id }) }}&#prevNext-ink" class="btn btn-secondary">&#8249;&#8249; Précédent</a>
+            <a href="{{ path('show_work', {'id': previousWork.id }) }}&#prev-next-ink" class="btn btn-secondary">&#8249;&#8249; Précédent</a>
         {% endif %}
     
         {% if nextWork %}
-            <a href="{{ path('show_work', {'id': nextWork.id }) }}&#prevNext-ink" class="btn btn-secondary">Suivant &#8250;&#8250;</a>
+            <a href="{{ path('show_work', {'id': nextWork.id }) }}&#prev-next-ink" class="btn btn-secondary">Suivant &#8250;&#8250;</a>
         {% endif %}
         
     </div>
