@@ -12,6 +12,13 @@ main {
 }
 
 .login-form {
-    min-width: 600px;
+    max-width: 600px;
+    min-width: 320px;
     padding: 30px;
+}
+
+.login-btn-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }

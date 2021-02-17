@@ -45,4 +45,26 @@ class ContactNotification
 
         $this->mailer->send($message);
     }
+
+
+    public function resetPasswordMail($email, $url)
+    {
+        $adminMail = $this->params->get('admin_mail');
+
+        $content = 'Bonjour,<br/>';
+        $content .= 'Vous avez demandé à changer de mot de passe sur le site cyannlab.com.<br/><br/>';
+        $content .= 'Merci de bien vouloir cliquer sur le lien suivant pour ';
+        $content .= "<a href='" . $url . "'>mettre à jour votre mot de passe</a>.<br/><br/>";
+        $content .= '<strong>Ce lien ne sera valable que trois heures.</strong>';
+
+        $message = (new \Swift_Message('Message de cyannlab.com'))
+            ->setFrom($adminMail)
+            ->setTo($email)
+            ->setReplyTo($adminMail)
+            ->setBody($this->renderer->render('emails/resetPassword.html.twig', [
+                'content' => $content
+            ]), 'text/html');
+
+        $this->mailer->send($message);
+    }
 }
