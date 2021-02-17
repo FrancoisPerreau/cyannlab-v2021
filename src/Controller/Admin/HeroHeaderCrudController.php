@@ -18,12 +18,12 @@ class HeroHeaderCrudController extends AbstractCrudController
     }
 
 
-    public function configureCrud(Crud $crud): Crud
-    {
-        return $crud
-            ->setEntityLabelInSingular('Header')
-            ->setEntityLabelInPlural('Headers');
-    }
+    // public function configureCrud(Crud $crud): Crud
+    // {
+    //     return $crud
+    //         ->setEntityLabelInSingular('Header')
+    //         ->setEntityLabelInPlural('Headers');
+    // }
 
 
     public function configureFields(string $pageName): iterable
