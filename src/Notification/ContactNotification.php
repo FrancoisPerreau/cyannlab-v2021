@@ -61,7 +61,7 @@ class ContactNotification
             ->setFrom($adminMail)
             ->setTo($email)
             ->setReplyTo($adminMail)
-            ->setBody($this->renderer->render('emails/resetPassword.html.twig', [
+            ->setBody($this->renderer->render('emails/resetPasswordMail.html.twig', [
                 'content' => $content
             ]), 'text/html');
 

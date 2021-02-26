@@ -3,6 +3,7 @@
 namespace App\Controller\Security;
 
 use App\Entity\ResetPassword;
+use App\Form\ResetPasswordType;
 use App\Notification\ContactNotification;
 use App\Repository\ResetPasswordRepository;
 use App\Repository\UserRepository;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ResetPasswordController extends AbstractController
 {
@@ -41,8 +43,9 @@ class ResetPasswordController extends AbstractController
                 // Envoi d'un email à l'utilisateur avec un lien pour changer de MDP
                 $url = $this->generateUrl('update_password', ["token" => $resetPassword->getToken()]);
                 $notification->resetPasswordMail($user->getEmail(), $url);
+                $this->addFlash('notice', 'Un email vous a été envoyé avec la marche à suivre pour modifier votre mot de passe.');
             } else {
-                dd('oupsssssss');
+                $this->addFlash('notice', 'Cet email ne correspond à aucun utilisateur');
             }
         }
 
@@ -55,7 +58,7 @@ class ResetPasswordController extends AbstractController
     /**
      * @Route("/modifier-mon-mot-de-passe/{token}", name="update_password")
      */
-    public function updatePassword($token, ResetPasswordRepository $resetPasswordRepository, CheckDateByHour $checkDateByHour): Response
+    public function updatePassword($token, ResetPasswordRepository $resetPasswordRepository, CheckDateByHour $checkDateByHour, Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $entityManager): Response
     {
         $resetPassword = $resetPasswordRepository->findOneByToken($token);
 
@@ -69,10 +72,26 @@ class ResetPasswordController extends AbstractController
             return $this->redirectToRoute('reset_password');
         }
 
-        dd($resetPassword);
+        $form = $this->createForm(ResetPasswordType::class);
+        $form->handleRequest($request);
 
-        return $this->render('security/resetPassword.html.twig', [
-            'pageTitle' => 'Mot de passe oublié',
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newPassword = $form->get('newPassword')->getData();
+            $user = $resetPassword->getUser();
+
+            // Encoder le nouveau MDP et l'enregistrer en bdd
+            $password = $encoder->encodePassword($user, $newPassword);
+            $user->setPassword($password);
+            $entityManager->flush();
+
+            // Rediriger vers la page de connexion
+            $this->addFlash('notice', 'Votre mot de passe a bien été mis à jour.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('security/updatePassword.html.twig', [
+            'pageTitle' => 'Réinitialiser mon mot de passe',
+            'form' => $form->createView(),
         ]);
     }
 }
