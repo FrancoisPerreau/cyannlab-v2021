@@ -10,8 +10,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\UrlField;
 
@@ -35,6 +35,11 @@ class WorkCrudController extends AbstractCrudController
         return [
             TextField::new('title', 'Titre'),
             TextField::new('subtitle', 'Sous-titre'),
+            TextField::new('enteringSlug', 'Saisie slug')
+                ->hideOnIndex(),
+            SlugField::new('slug', 'Slug')
+                ->setTargetFieldName('enteringSlug')
+                ->hideOnIndex(),
             AssociationField::new('categorie', 'Catégorie')
                 ->setRequired(true),
             TextareaField::new('description', 'Description')

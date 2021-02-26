@@ -2,6 +2,7 @@
 
 namespace App\Controller\Pages;
 
+use App\Entity\Work;
 use App\Repository\CategorieRepository;
 use App\Repository\PageRepository;
 use App\Repository\WorkRepository;
@@ -57,16 +58,20 @@ class WorkController extends AbstractController
 
 
     /**
-     * @Route("/réalisation/{id}", name="show_work")
+     * @Route("/réalisation/{slug}", name="show_work")
      */
-    public function showWork($id, PageRepository $pageRepository, WorkRepository $workRepository, CategorieRepository $categorieRepository): Response
+    public function showWork(Work $work, PageRepository $pageRepository, WorkRepository $workRepository, CategorieRepository $categorieRepository): Response
     {
-        $work = $workRepository->find($id);
+        // $work = $workRepository->findOneBySlug(['slug' => $slug]);
         $page = $pageRepository->findOneByName('works');
         $categories = $categorieRepository->findAll();
 
-        $previousWork = $workRepository->findPreviousWork($work->getCreatedAt());
-        $nextWork = $workRepository->findNextWork($work->getCreatedAt());
+        $workCreatedDate = $work->getCreatedAt();
+
+        // dd($workCreatedDate);
+
+        $previousWork = $workRepository->findPreviousWork($workCreatedDate);
+        $nextWork = $workRepository->findNextWork($workCreatedDate);
 
 
         return $this->render('pages/showWork.html.twig', [
