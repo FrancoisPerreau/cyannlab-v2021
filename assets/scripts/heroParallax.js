@@ -5,11 +5,13 @@ const heroImg = document.querySelector('.hero-background-img');
 let topImageOrigin;
 if(heroImg){    
   topImageOrigin = heroImg.offsetTop;
+  // heroImg.style.top = topImageOrigin + "px"
 }
 
 
+
 function parallax() {
-    // console.log((-window.scrollY-window.scrollY / 4+ topImageOrigin) + "px");
+
     heroImg.style.top = (-(window.scrollY / 4) + topImageOrigin) + "px";
 };
 
