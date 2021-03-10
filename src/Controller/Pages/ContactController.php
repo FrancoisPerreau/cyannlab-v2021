@@ -32,7 +32,7 @@ class ContactController extends AbstractController
 
             if ($reCaptchaGoogleService->checkGoogle($recaptchaResponse)) {
                 $notification->notify($contact);
-                $this->addFlash('success', 'Votre email a bien été envoyer, je vous répondrais dans les plus brefs délais.');
+                $this->addFlash('success', 'Votre e-mail a bien été envoyé, je vous répondrai dans les plus brefs délais');
             }
 
             $this->redirectToRoute('contact');
