@@ -52,7 +52,7 @@
         <div class="contact-form-wrapper">
             {% for message in app.flashes('success') %}
             <div class="alert">
-                <p>Votre email a bien été envoyer, je vous répondrais dans les plus brefs délais.</p>
+                <p>{{ message }}</p>
             </div>
             {% endfor %}
 
